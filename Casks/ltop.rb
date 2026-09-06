@@ -13,7 +13,9 @@ cask "ltop" do
   end
 
   depends_on arch: :x86_64
-  depends_on macos: :all
+  # Oldest macOS Homebrew 6 can express; the binary's Mach-O minimum is
+  # 10.12 (LC_VERSION_MIN_MACOSX), so 11 is a safe lower bound.
+  depends_on macos: :big_sur
 
   # The release archive contains a single top-level directory with the
   # binary nested inside; reference it by that path.
