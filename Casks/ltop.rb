@@ -2,7 +2,7 @@ cask "ltop" do
   version "0.1.0"
   sha256 "e4d60310db4f638f9cf01e182be1bc35e1b39678e0dcf9d7c260e2a84b7a5b42"
 
-  url "https://github.com/pauldckim/ltop-release/releases/download/v0.1.0/ltop-v0.1.0-macos-x86_64.zip"
+  url "https://github.com/pauldckim/ltop-release/releases/download/v#{version}/ltop-v#{version}-macos-x86_64.zip"
   name "ltop"
   desc "Single-binary TUI monitor for llama.cpp llama-server and its local process"
   homepage "https://github.com/pauldckim/ltop-release"
@@ -19,7 +19,7 @@ cask "ltop" do
 
   # The release archive contains a single top-level directory with the
   # binary nested inside; reference it by that path.
-  binary "ltop-v0.1.0-macos-x86_64/ltop"
+  binary "ltop-v#{version}-macos-x86_64/ltop"
 
   caveats <<~EOS
     ltop is distributed under a proprietary freeware license (see
