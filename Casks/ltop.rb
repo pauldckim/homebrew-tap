@@ -1,5 +1,6 @@
 cask "ltop" do
   arch arm: "arm64", intel: "x86_64"
+
   version "0.1.1"
   sha256 arm:   "995dc07d0ae85252982f8ef728f1d95b8561d5daa05c34167671d706ae50ede7",
          intel: "da11992df1605519626a137fbe3ffe13aff3c52bd3665b31ef4e2e3e0b0035b4"
