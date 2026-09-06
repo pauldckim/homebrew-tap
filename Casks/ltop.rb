@@ -2,8 +2,8 @@ cask "ltop" do
   arch arm: "arm64", intel: "x86_64"
 
   version "0.1.1"
-  sha256 arm:   "7f709d9aacb52fb9b35710157a0f585fbd12e2501a008549c36f94ce89461036",
-         intel: "fb1adabe78920136ef052d2420c14e996faedb2e45438dd92a3f4d330312835d"
+  sha256 arm:   "66c97f41f4a0c9919b89f8a003366a36f8e77d79af03ec866dccb3efbaa9fa55",
+         intel: "676da4356e00813e35092c8f386daa78ee41cca09a8f033949ca452135e5bdd9"
 
   url "https://github.com/pauldckim/ltop-release/releases/download/v#{version}/ltop-v#{version}-macos-#{arch}.zip"
   name "ltop"
@@ -44,9 +44,9 @@ cask "ltop" do
 
       shasum -a 256 "$HOME/Library/Caches/Homebrew/downloads/"*--ltop-v0.1.1-macos-*.zip
       # expected (Apple Silicon / arm64):
-      #   7f709d9aacb52fb9b35710157a0f585fbd12e2501a008549c36f94ce89461036
+      #   66c97f41f4a0c9919b89f8a003366a36f8e77d79af03ec866dccb3efbaa9fa55
       # expected (Intel / x86_64):
-      #   fb1adabe78920136ef052d2420c14e996faedb2e45438dd92a3f4d330312835d
+      #   676da4356e00813e35092c8f386daa78ee41cca09a8f033949ca452135e5bdd9
 
     Then unblock the binary by either:
 
