@@ -30,20 +30,24 @@ That is the whole install — one command, and here is exactly what it does:
   no install scripts — nothing is copied out of the tap and executed
   locally.
 
-## First run (unsigned binary)
+## First run (ad-hoc signed binary)
 
 ltop is proprietary freeware (full license:
 [release repo LICENSE.md](https://github.com/pauldckim/ltop-release/blob/main/LICENSE.md);
-the source code is not published), and the v0.1.0 macOS binary is **not**
-Developer-ID signed or notarized. This cask does **not** remove the macOS
-quarantine attribute for you, so the first run of `ltop` is blocked by
-Gatekeeper. `brew install` prints the exact steps as cask caveats:
+the source code is not published). The v0.1.1 macOS binaries are
+**ad-hoc signed** — the arm64 binary must carry at least an ad-hoc
+signature to launch on Apple Silicon, and the x86_64 binary is ad-hoc
+signed for consistency. **Ad-hoc signing is not a Developer ID
+signature:** the binaries are not Developer-ID signed or notarized, and
+this cask does **not** remove the macOS quarantine attribute for you, so
+the first run of `ltop` is blocked by Gatekeeper. `brew install` prints
+the exact steps as cask caveats:
 
 1. Verify the archive checksum (Homebrew already verified the SHA-256
    during install; the caveats show how to re-check the cached download).
 2. Unblock the binary by either
    - removing the quarantine attribute recursively, before the first
-     run: `xattr -dr com.apple.quarantine /usr/local/Caskroom/ltop`, or
+     run: `xattr -dr com.apple.quarantine "$(brew --prefix)/Caskroom/ltop"`, or
    - running `ltop` once (it is blocked), then opening
      **System Settings → Privacy & Security** and clicking
      **Open Anyway** next to the ltop warning.
@@ -64,7 +68,11 @@ brew untrust --cask pauldckim/tap/ltop   # optional: drop the trust entry
 brew untap pauldckim/tap                  # optional: remove the tap
 ```
 
-## Supported platform
+## Supported platforms
 
-macOS x86_64 only. v0.1.0 ships a macOS x86_64 binary; the cask declares
-`depends_on arch: :x86_64` and will not install on Apple Silicon.
+macOS **arm64 and x86_64** (Apple Silicon and Intel). v0.1.1 ships a
+binary for each architecture; the cask selects the per-architecture
+archive and SHA-256 (`arch arm: "arm64", intel: "x86_64"`,
+`sha256 arm: …, intel: …`) and requires macOS ≥ 11 (Big Sur) — the
+arm64 macOS floor. (The 0.1.0 cask was x86_64-only via
+`depends_on arch: :x86_64`.)
