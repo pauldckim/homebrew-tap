@@ -42,11 +42,15 @@ Gatekeeper. `brew install` prints the exact steps as cask caveats:
 1. Verify the archive checksum (Homebrew already verified the SHA-256
    during install; the caveats show how to re-check the cached download).
 2. Unblock the binary by either
+   - removing the quarantine attribute recursively, before the first
+     run: `xattr -dr com.apple.quarantine /usr/local/Caskroom/ltop`, or
    - running `ltop` once (it is blocked), then opening
      **System Settings → Privacy & Security** and clicking
-     **Open Anyway** next to the ltop warning, or
-   - explicitly removing the quarantine attribute yourself:
-     `xattr -d com.apple.quarantine /usr/local/bin/ltop`.
+     **Open Anyway** next to the ltop warning.
+
+   If `ltop` was already run once and blocked, the quarantine removal
+   alone may not be enough (macOS caches the assessment per path); use
+   the System Settings option or reboot in that case.
 
 Developer-ID signing + notarization is the proper fix and is planned;
 until then, treat this cask as a convenience channel, not an

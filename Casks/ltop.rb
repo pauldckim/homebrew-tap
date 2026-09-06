@@ -35,17 +35,22 @@ cask "ltop" do
     (Homebrew already verified this SHA-256 during install; to re-check
     the cached download):
 
-      shasum -a 256 "$HOME/Library/Caches/Homebrew/downloads/e4d60310db4f638f9cf01e182be1bc35e1b39678e0dcf9d7c260e2a84b7a5b42--ltop-v0.1.0-macos-x86_64.zip"
+      shasum -a 256 "$HOME/Library/Caches/Homebrew/downloads/"*--ltop-v0.1.0-macos-x86_64.zip
       # expected: e4d60310db4f638f9cf01e182be1bc35e1b39678e0dcf9d7c260e2a84b7a5b42
 
     Then unblock the binary by either:
 
-      1. running `ltop` once (it will be blocked), then opening
-         System Settings > Privacy & Security and clicking "Open Anyway"
-         next to the ltop warning; or
+      1. removing the quarantine attribute recursively, before the
+         first run:
+         xattr -dr com.apple.quarantine /usr/local/Caskroom/ltop
 
-      2. explicitly removing the quarantine attribute yourself:
-         xattr -d com.apple.quarantine /usr/local/bin/ltop
+      2. or running `ltop` once (it will be blocked), then opening
+         System Settings > Privacy & Security and clicking "Open Anyway"
+         next to the ltop warning
+
+    If `ltop` was already run once and blocked, option 1 alone may not
+    be enough (macOS caches the assessment per path); use option 2 or
+    reboot in that case.
 
     Developer-ID signing + notarization is the proper fix and is
     planned; until then, treat this cask as a convenience channel, not
