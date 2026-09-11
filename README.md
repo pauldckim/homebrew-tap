@@ -76,3 +76,25 @@ archive and SHA-256 (`arch arm: "arm64", intel: "x86_64"`,
 `sha256 arm: …, intel: …`) and requires macOS ≥ 11 (Big Sur) — the
 arm64 macOS floor. (The 0.1.0 cask was x86_64-only via
 `depends_on arch: :x86_64`.)
+
+## Maintainer policy
+
+- **Cask updated per published release.** The cask is changed only after
+  the corresponding ltop release exists as a published GitHub Release on
+  [`pauldckim/ltop-release`](https://github.com/pauldckim/ltop-release) —
+  the cask commit lands after the release, so the cask URL always
+  resolves — and pins the new version and per-architecture SHA-256.
+- **Verified maintainer identity.** Maintainer commits to this tap use
+  the maintainer's verified GitHub identity (`Paul Kim
+  <pauldckim@gmail.com>`). Repo-local git config does not travel with a
+  clone, so set it once in each checkout before committing:
+
+  ```sh
+  git config --local user.name "Paul Kim"
+  git config --local user.email "pauldckim@gmail.com"
+  ```
+
+  The maintainer's work email is never used for commits here.
+- **Forward-only history.** No force-push, no history rewrite, no tag
+  re-creation: a cask fix or release bump ships as a new commit, and
+  released cask versions keep their history as-is.
